@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessoria de Milhas | SD Viagens</title>
+    <!-- Carregando Tailwind CSS para Estilização Moderna e Responsiva -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuração de Fonte Playfair Display (igual ao site SD Viagens) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #1a1a1a;
+            color: #b3b3b3;
+        }
+        .text-logo-gold {
+            color: #C0A05D;
+        }
+        .bg-logo-gold {
+            background-color: #C0A05D;
+        }
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 18px rgba(0,0,0,0.5);
+            border: 1px solid #C0A05D;
+        }
+        .input-currency::before {
+            content: 'R$';
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9CA3AF; /* Gray-400 */
+            font-weight: 600;
+        }
+        .input-currency input {
+            padding-left: 3.5rem; /* Espaço para o "R$" */
+            color: #1F2937; 
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+        }
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #C0A05D;
+        }
+        .close-button:hover {
+            color: #FFD700;
+        }
+        #success-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-[#1a1a1a] text-[#b3b3b3]">
+
+    <!-- Header - Com navegação e texto dourado -->
+    <header class="text-white p-0 shadow-lg">
+        <div class="p-6 md:p-10 z-20 relative">
+            <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-3xl md:text-4xl font-bold text-logo-gold">SD Viagens</h1>
+                </div>
+                <p class="mt-2 md:mt-0 text-base md:text-xl text-center text-logo-gold">Assessoria de Milhas Exclusiva</p>
+
+                <!-- Menu de navegação simplificado -->
+                <nav class="flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 items-center space-y-4 md:space-y-0">
+                    <a href="#calculadora" class="block w-full text-center text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0">💰 Calculadora</a>
+                    <a href="#assessoria" class="block w-full text-center text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0">💎 Assessoria</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Principal (Hero Section) - Fundo Preto Profundo -->
+    <section class="bg-[#1a1a1a] text-white py-12 sm:py-20 shadow-2xl shadow-black/70">
+        <div class="container mx-auto px-4 max-w-6xl text-center">
+            <!-- Título Principal (Headline de Alto Impacto) - Destaque em DOURADO ELEGANTE -->
+            <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
+                Domine o <span class="text-logo-gold">Método 4x de Milhas</span> e Conquiste Renda Extra Mensal
+            </h1>
+            <!-- Subtítulo Persuasivo (Copywriting) -->
+            <p class="text-lg sm:text-xl md:text-2xl font-light mb-10 opacity-90 text-[#b3b3b3]">
+                A assessoria que transforma seus gastos em uma fonte consistente de <strong>lucros mensais de R$ 3.000 a R$ 8.000</strong>, preservando seu tempo e capital.
+            </p>
+            
+            <!-- Call to Action (CTA) Principal - DOURADO PROFUNDO E RICO PARA CONVERSÃO -->
+            <a href="#calculadora" class="inline-block bg-logo-gold text-gray-900 font-bold text-base sm:text-lg md:text-xl px-6 sm:px-10 py-4 sm:py-5 rounded-lg shadow-2xl shadow-yellow-700/30 hover:bg-opacity-90 transition duration-300 transform hover:scale-105 tracking-wide">
+                GARANTIR MINHA VAGA NA ASSESSORIA 🚀
+            </a>
+
+            <!-- Navegação Rápida para as Seções (Texto em Cinza Claro) -->
+            <nav class="mt-8 sm:mt-12">
+                <ul class="flex flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm md:text-base font-medium">
+                    <li><a href="#calculadora" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">💰 Calculadora de Lucro</a></li>
+                    <li><a href="#assessoria" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">💳 Assessoria Exclusiva</a></li>
+                    <li><a href="#viagens" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">✈️ Viagens de Luxo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Seção de Benefícios (PILARES DA ESTRATÉGIA DE MILHAS) - Fundo Grafite Escuro -->
+    <main class="py-12 sm:py-20 md:py-24 bg-[#262626] border-b border-[#333]">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 text-logo-gold">Os Pilares da Renda Extra: Onde o Dinheiro Está</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Benefício 1: O Segredo dos Bancos no seu Cartão -->
+                <div class="card bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-xl shadow-black/50 border-t-4 border-logo-gold hover:shadow-2xl transition duration-300">
+                    <div class="text-4xl text-logo-gold mb-4">💳</div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">Domínio do Cashback Oculto</h3>
+                    <p class="text-[#b3b3b3] text-sm">Revelamos a estratégia bancária que transforma seus cartões em geradores de capital, e não em meros facilitadores de débito. Pare de perder dinheiro, comece a lucrar.</p>
+                </div>
+
+                <!-- Benefício 2: A Fórmula Secreta 4x -->
+                <div class="card bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-xl shadow-black/50 border-t-4 border-logo-gold hover:shadow-2xl transition duration-300">
+                    <div class="text-4xl text-logo-gold mb-4">💰</div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">A Multiplicação de Capital 4X</h3>
+                    <p class="text-[#b3b3b3] text-sm">Aprenda a tática para converter compras de R$ 100 em até R$ 400 em valor resgatável. É o método mais seguro e de alta rentabilidade para o seu perfil.</p>
+                </div>
+
+                <!-- Benefício 3: Piloto Automático de Lucros (Delegação) -->
+                <div class="card bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-xl shadow-black/50 border-t-4 border-logo-gold hover:shadow-2xl transition duration-300">
+                    <div class="text-4xl text-logo-gold mb-4">⚙️</div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">Execução em Piloto Automático</h3>
+                    <p class="text-[#b3b3b3] text-sm">Nossa assessoria executa a venda das suas milhas no <strong>pico de valor</strong> e no timing correto. Você só confere o lucro caindo na sua conta, sem gerenciar operações.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Seção 1: CALCULADORA DE CASHBACK PERDIDO (A DOR) - LEAD MAGNET -->
+    <section id="calculadora" class="bg-[#1a1a1a] py-12 sm:py-20 md:py-24 border-t border-[#333]">
+        <div class="container mx-auto px-4 max-w-xl text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-logo-gold">1. CALCULE SEU PREJUÍZO ANUAL</h2>
+            <p class="text-lg sm:text-xl text-[#b3b3b3] mb-6 sm:mb-8">
+                Descubra o lucro real que você perdeu este ano ao não aplicar a Estratégia 4x.
+            </p>
+            
+            <div class="bg-[#262626] p-6 sm:p-8 rounded-2xl shadow-2xl shadow-black/50 border-2 border-logo-gold">
+                
+                <!-- GATE DE CAPTURA DE LEAD (Mostrado inicialmente) -->
+                <div id="lead-gate">
+                    <p class="text-base sm:text-lg font-bold text-white mb-4">
+                        Insira seus dados e Receba o <strong>Guia Ouro Grátis</strong> e o Acesso à Calculadora:
+                    </p>
+
+                    <!-- Formulário de Captura -->
+                    <form onsubmit="event.preventDefault(); submitLeadAndRevealCalculator()">
+                        <!-- Input field styles adjusted for dark background -->
+                        <input type="text" id="lead-name" placeholder="Seu Nome" class="w-full p-3 mb-3 border border-[#444] bg-[#333] text-white rounded-lg focus:ring-logo-gold focus:border-logo-gold text-sm sm:text-base" required>
+                        <input type="email" id="lead-email" placeholder="Seu Melhor Email" class="w-full p-3 mb-4 border border-[#444] bg-[#333] text-white rounded-lg focus:ring-logo-gold focus:border-logo-gold text-sm sm:text-base" required>
+                        
+                        <!-- CTA Dourado Principal -->
+                        <button type="submit" class="w-full bg-logo-gold text-gray-900 font-extrabold text-base sm:text-lg py-3 rounded-xl shadow-md hover:bg-opacity-90 transition duration-300 transform hover:scale-[1.01]">
+                            ACESSAR CALCULADORA E GUIA OURO!
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- CALCULADORA (Oculta inicialmente, revelada após o cadastro) -->
+                <div id="full-calculator" class="hidden">
+                    <p class="text-base sm:text-lg font-bold text-logo-gold mb-6">
+                        ✅ Acesso liberado! Prossiga com o seu cálculo:
+                    </p>
+
+                    <label for="monthly-expense" class="block text-left text-base sm:text-lg font-semibold text-gray-200 mb-3">
+                        Qual o seu gasto mensal médio no cartão? (R$)
+                    </label>
+                    
+                    <div class="relative mb-6 input-currency">
+                        <!-- Input de cálculo com fundo branco e borda dourada para fácil leitura (Preto no Branco) -->
+                        <input type="number" id="monthly-expense" placeholder="Ex: 10000" min="100" class="w-full p-3 py-3 sm:py-4 border-2 border-logo-gold bg-white text-gray-900 rounded-xl focus:ring-logo-gold focus:border-logo-gold text-lg sm:text-xl font-bold" required>
+                    </div>
+
+                    <!-- Botão para acionar o cálculo final - Dourado Suave para secundário -->
+                    <button onclick="calculateFullLoss()" id="calculate-final-button" class="w-full bg-logo-gold text-gray-900 font-extrabold text-base sm:text-lg py-3 rounded-xl shadow-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-[1.01] mb-6">
+                        REVELAR LUCRO POTENCIAL ANUAL
+                    </button>
+
+                    <!-- Resultados Finais (Ocultos até o cálculo) -->
+                    <div id="final-results" class="hidden space-y-4">
+                        
+                        <!-- Resultado Mínimo (4%) - Fundo Escuro com Borda Dourada Profunda -->
+                        <div class="p-4 bg-[#333] rounded-xl border-l-4 border-logo-gold text-left">
+                            <p class="text-sm font-semibold text-logo-gold">LUCRO ANUAL MÍNIMO (4% de Retorno Capturado)</p>
+                            <p id="min-return" class="text-xl sm:text-2xl font-extrabold text-white">R$ 0,00</p>
+                        </div>
+                        
+                        <!-- Resultado Máximo (8%) -->
+                        <div class="p-4 bg-[#333] rounded-xl border-l-4 border-logo-gold text-left">
+                            <p class="text-sm font-semibold text-logo-gold">LUCRO ANUAL MÁXIMO (8% de Retorno Capturado)</p>
+                            <p id="max-return" class="text-xl sm:text-2xl font-extrabold text-white">R$ 0,00</p>
+                        </div>
+
+                        <p class="text-sm sm:text-base text-logo-gold mt-4 font-semibold">Este valor é o que você pode estar lucrando TODO ANO! Clique abaixo e agende sua consulta!</p>
+                        
+                        <!-- CTA Secundário Pós-Cálculo -->
+                        <a href="#assessoria" class="mt-6 inline-block bg-logo-gold text-gray-900 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 rounded-lg shadow-md hover:bg-opacity-90 transition duration-300">
+                            QUERO LUCRAR ESSE VALOR
+                        </a>
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 2: ASSESSORIA DE MILHAS (A SOLUÇÃO) - Fundo Preto Profundo para destaque -->
+    <section id="assessoria" class="bg-[#1a1a1a] py-12 sm:py-20 md:py-24 border-t border-[#333]">
+        <div class="container mx-auto px-4 max-w-6xl">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 text-logo-gold">2. Assessoria Exclusiva: Sua Chave para o Lucro</h2>
+            <p class="text-lg sm:text-xl text-[#b3b3b3] text-center mb-8 sm:mb-12">O serviço de concierge que garante sua renda extra mensal com milhas, sem que você precise ser especialista.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 sm:gap-10 items-center">
+                <!-- Benefícios do Serviço (Pontos na cor Dourada) -->
+                <div>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <span class="text-logo-gold text-2xl sm:text-3xl mr-4 mt-1">✨</span>
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-semibold text-white">Consultoria 1-on-1 Personalizada</h3>
+                                <p class="text-[#b3b3b3] text-sm">Análise detalhada do seu perfil de gastos e crédito para montar uma estratégia de milhas com a maior rentabilidade (4% a 8% de retorno).</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-logo-gold text-2xl sm:text-3xl mr-4 mt-1">🔒</span>
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-semibold text-white">Segurança e Expertise na Venda</h3>
+                                <p class="text-[#b3b3b3] text-sm">Operamos em seu nome, garantindo transações seguras e resgates no momento ideal (Pico de Valor) para que você maximize seus ganhos. Risco Zero.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-logo-gold text-2xl sm:text-3xl mr-4 mt-1">⏰</span>
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-semibold text-white">Liberdade de Tempo</h3>
+                                <p class="text-[#b3b3b3] text-sm">Retire o fardo de monitorar promoções, regras e a volatilidade do mercado. Cuidamos de tudo para você, entregando apenas o lucro na sua conta.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Dourado (Repetição de CTA de Conversão) -->
+                    <a href="#assessoria" class="mt-8 sm:mt-10 inline-block bg-logo-gold text-gray-900 font-bold text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-5 rounded-lg shadow-2xl shadow-yellow-700/30 hover:bg-opacity-90 transition duration-300 tracking-wide">
+                        AGENDAR MINHA CONSULTORIA VIP
+                    </a>
+                </div>
+
+                <!-- Imagem Mockup (Placeholder) -->
+                <div class="hidden md:block">
+                    <!-- Placeholder de fundo Grafite Escuro para contraste, com borda dourada profunda -->
+                    <div class="bg-[#262626] p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-logo-gold h-80 sm:h-96 flex items-center justify-center">
+                         <p class="text-lg sm:text-2xl font-bold text-logo-gold/50 text-center leading-relaxed">
+                            [Gráfico de Crescimento Financeiro em Ouro]
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 3: VIAGENS (O SONHO / RECOMPENSA) - Fundo Cinza/Carvão para distinção -->
+    <section id="viagens" class="py-12 sm:py-16 md:py-20 bg-[#262626] border-t border-[#333]">
+        <div class="container mx-auto px-4 max-w-6xl text-center">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-logo-gold">3. Viagens de Classe Executiva: O Bônus da Renda</h2>
+            <p class="text-lg sm:text-xl text-[#b3b3b3] mb-8 sm:mb-12">Use o lucro gerado com milhas para viajar com conforto e luxo, sem pagar a mais por isso.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Cartão 1 -->
+                <div class="card bg-[#1a1a1a] p-5 sm:p-6 rounded-2xl shadow-xl shadow-black/30 border-t-4 border-logo-gold">
+                    <div class="text-4xl mb-3 text-logo-gold">🥂</div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">Upgrades e Lounges VIP</h3>
+                    <p class="text-[#b3b3b3] text-sm">Acesso a salas exclusivas e assentos premium em voos internacionais, transformando a jornada em parte do seu luxo.</p>
+                </div>
+                <!-- Cartão 2 -->
+                <div class="card bg-[#1a1a1a] p-5 sm:p-6 rounded-2xl shadow-xl shadow-black/30 border-t-4 border-logo-gold">
+                    <div class="text-4xl mb-3 text-logo-gold">✈️</div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">Passagens Internacionais (0 Custo)</h3>
+                    <p class="text-[#b3b3b3] text-sm">Resgate de passagens para os destinos mais cobiçados do mundo utilizando apenas seus pontos e milhas acumuladas.</p>
+                </div>
+                <!-- Cartão 3 -->
+                <div class="card bg-[#1a1a1a] p-5 sm:p-6 rounded-2xl shadow-xl shadow-black/30 border-t-4 border-logo-gold">
+                    <div class="text-4xl mb-3 text-logo-gold">💎</div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">Hospedagens Premium</h3>
+                    <p class="text-[#b3b3b3] text-sm">Utilize os lucros para garantir estadias em hotéis de alto padrão, complementando a experiência de viagem luxuosa.</p>
+                </div>
+                <!-- NOVO Cartão 4: Viagens com Dinheiro Mais Barato -->
+                <div class="card bg-[#1a1a1a] p-5 sm:p-6 rounded-2xl shadow-xl shadow-black/30 border-t-4 border-logo-gold">
+                    <div class="text-4xl mb-3 text-logo-gold">🛒</div>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">Kits de Viagem Exclusivos</h3>
+                    <p class="text-[#b3b3b3] text-sm">Acesso a pacotes completos com até <strong>60% de economia</strong> - voos, hospedagem e traslados por valores que você não encontra em nenhum outro lugar.</p>
+                </div>
+            </div>
+
+            <!-- Nova Subseção: Viagens com Dinheiro Inteligente -->
+            <div class="mt-12 sm:mt-16 bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl border-2 border-logo-gold">
+                <h3 class="text-xl sm:text-2xl font-bold mb-6 text-logo-gold">✨ Viaje com Dinheiro, Mas de Forma Inteligente</h3>
+                <div class="grid md:grid-cols-2 gap-6 sm:gap-8 text-left">
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-semibold mb-4 text-white">🎁 Pacotes All-Inclusive com Descontos Absurdos</h4>
+                        <p class="text-[#b3b3b3] mb-4 text-sm sm:text-base">Enquanto outros pagam preços inflacionados, você acessa pacotes completos com:</p>
+                        <ul class="text-[#b3b3b3] space-y-2 text-sm sm:text-base">
+                            <li class="flex items-start">
+                                <span class="text-logo-gold mr-2">✓</span>
+                                <span>Descontos de <strong>40% a 60%</strong> em resorts premium</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-logo-gold mr-2">✓</span>
+                                <span>Voo + hospedagem com preços fechados diretamente com operadoras</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-logo-gold mr-2">✓</span>
+                                <span>Condições exclusivas para clientes SD Viagens</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg sm:text-xl font-semibold mb-4 text-white">🚀 Acesso a Ofertas Relâmpago</h4>
+                        <p class="text-[#b3b3b3] mb-4 text-sm sm:text-base">Nossa rede exclusiva garante oportunidades únicas:</p>
+                        <ul class="text-[#b3b3b3] space-y-2 text-sm sm:text-base">
+                            <li class="flex items-start">
+                                <span class="text-logo-gold mr-2">✓</span>
+                                <span>Promoções flash com preços abaixo do mercado</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-logo-gold mr-2">✓</span>
+                                <span>Last minutes com até <strong>70% de desconto</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-logo-gold mr-2">✓</span>
+                                <span>Pacotes familiares com condições especiais</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-6 sm:mt-8 text-center">
+                    <p class="text-base sm:text-lg text-logo-gold font-semibold mb-4">
+                        "Por que pagar mais se você pode viajar com os melhores preços?"
+                    </p>
+                    <a href="https://sdviagens.github.io/viagens/" target="_blank" class="inline-block bg-logo-gold text-gray-900 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 rounded-lg shadow-md hover:bg-opacity-90 transition duration-300">
+                        QUERO ACESSAR OS PACOTES EXCLUSIVOS
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Rodapé -->
+    <footer class="bg-[#1a1a1a] text-white py-8 border-t border-logo-gold/50">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm text-[#b3b3b3]">&copy; 2025 SD Viagens. Sua Renda Extra em Piloto Automático.</p>
+            <div class="mt-2 text-xs opacity-70">
+                <a href="#" class="hover:text-logo-gold mx-2">Política de Privacidade</a> | 
+                <a href="#" class="hover:text-logo-gold mx-2">Termos de Uso</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script JavaScript para a Calculadora com GATING COMPLETO -->
+    <script>
+        /**
+         * Lida com o envio do formulário, simula a captura de lead e revela a calculadora.
+         */
+        function submitLeadAndRevealCalculator() {
+            const leadName = document.getElementById('lead-name').value;
+            const leadEmail = document.getElementById('lead-email').value;
+            const leadGateDiv = document.getElementById('lead-gate');
+            const fullCalculatorDiv = document.getElementById('full-calculator');
+
+            // Validação simples
+            if (!leadName || !leadEmail) {
+                console.error("Por favor, preencha todos os campos do cadastro.");
+                return; 
+            }
+            
+            // --- Lógica de Captura de Lead (Aqui seria a chamada Firebase/API) ---
+            console.log(`Lead Capturado (Acesso à Calculadora): Nome: ${leadName}, Email: ${leadEmail}.`);
+            // Simulação de envio
+
+            // 1. Esconde o gate de lead
+            leadGateDiv.classList.add('hidden');
+            
+            // 2. Revela o container da calculadora
+            fullCalculatorDiv.classList.remove('hidden');
+
+            // Opcional: Rola a tela para garantir que a calculadora fique visível
+            document.getElementById('full-calculator').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        /**
+         * Calcula e exibe a perda mínima e máxima, acionada APÓS a revelação.
+         */
+        function calculateFullLoss() {
+            const monthlySpending = parseFloat(document.getElementById('monthly-expense').value);
+            const finalResultsDiv = document.getElementById('final-results');
+            const minReturnElement = document.getElementById('min-return');
+            const maxReturnElement = document.getElementById('max-return');
+            
+            // Verifica se o input é um número válido
+            if (isNaN(monthlySpending) || monthlySpending <= 0) {
+                console.error("Por favor, insira um gasto mensal válido (maior que R$ 100).");
+                finalResultsDiv.classList.add('hidden');
+                return;
+            }
+
+            // Gasto Anual Total (12 meses)
+            const annualSpending = monthlySpending * 12;
+
+            // Retorno Mínimo (4% do gasto anual) - O valor que o usuário DEVERIA capturar
+            const minReturn = annualSpending * 0.04;
+
+            // Retorno Máximo (8% do gasto anual) - O valor que o usuário PODE capturar
+            const maxReturn = annualSpending * 0.08;
+            
+            // Formatação para Moeda Brasileira (R$)
+            const formatter = new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            });
+
+            // 1. Atualiza o display com os valores (mínimo e máximo)
+            minReturnElement.innerText = formatter.format(minReturn);
+            maxReturnElement.innerText = formatter.format(maxReturn);
+
+            // 2. Mostra os resultados finais
+            finalResultsDiv.classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
