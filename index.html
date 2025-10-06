@@ -36,61 +36,96 @@
             left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: #9CA3AF; /* Gray-400 */
+            color: #9CA3AF;
             font-weight: 600;
         }
         .input-currency input {
-            padding-left: 3.5rem; /* Espaço para o "R$" */
+            padding-left: 3.5rem;
             color: #1F2937; 
         }
-        .modal {
-            display: none;
+        .whatsapp-float {
             position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        .thank-you-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1a1a1a;
+            border: 3px solid #C0A05D;
+            border-radius: 15px;
+            padding: 30px;
             z-index: 1000;
-            left: 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 90%;
+            width: 400px;
+        }
+        .overlay {
+            position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
+            background: rgba(0,0,0,0.8);
+            z-index: 999;
         }
-        .modal-content {
-            background-color: #1a1a1a;
-            padding: 20px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 800px;
-            position: relative;
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
         }
-        .close-button {
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            color: #C0A05D;
+        .input-error {
+            border-color: #ef4444 !important;
         }
-        .close-button:hover {
-            color: #FFD700;
+        /* Spinner CSS para o botão de envio */
+        .animate-spin {
+            animation: spin 1s linear infinite;
         }
-        #success-message {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body class="bg-[#1a1a1a] text-[#b3b3b3]">
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5511976134095" target="_blank" class="whatsapp-float pulse" aria-label="Fale conosco no WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893c0-3.18-1.24-6.169-3.495-8.424"/>
+        </svg>
+    </a>
 
     <!-- Header - Com navegação e texto dourado -->
     <header class="text-white p-0 shadow-lg">
@@ -178,21 +213,28 @@
             
             <div class="bg-[#262626] p-6 sm:p-8 rounded-2xl shadow-2xl shadow-black/50 border-2 border-logo-gold">
                 
-                <!-- GATE DE CAPTURA DE LEAD (Mostrado inicialmente) -->
+                <!-- GATE DE CAPTURA DE LEAD -->
                 <div id="lead-gate">
                     <p class="text-base sm:text-lg font-bold text-white mb-4">
-                        Insira seus dados e Receba o <strong>Guia Ouro Grátis</strong> e o Acesso à Calculadora:
+                        Insira seus dados para liberar o acesso à <strong>Calculadora de Lucro</strong>:
                     </p>
 
-                    <!-- Formulário de Captura -->
+                    <!-- Formulário de Captura (Agora controlado via JS para envio AJAX) -->
                     <form onsubmit="event.preventDefault(); submitLeadAndRevealCalculator()">
-                        <!-- Input field styles adjusted for dark background -->
-                        <input type="text" id="lead-name" placeholder="Seu Nome" class="w-full p-3 mb-3 border border-[#444] bg-[#333] text-white rounded-lg focus:ring-logo-gold focus:border-logo-gold text-sm sm:text-base" required>
-                        <input type="email" id="lead-email" placeholder="Seu Melhor Email" class="w-full p-3 mb-4 border border-[#444] bg-[#333] text-white rounded-lg focus:ring-logo-gold focus:border-logo-gold text-sm sm:text-base" required>
+                        <div class="mb-3">
+                            <input type="text" id="lead-name" name="Nome" placeholder="Seu Nome Completo" class="w-full p-3 border border-[#444] bg-[#333] text-white rounded-lg focus:ring-logo-gold focus:border-logo-gold text-sm sm:text-base" required>
+                            <div id="name-error" class="error-message"></div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <input type="email" id="lead-email" name="Email" placeholder="seu.email@provedor.com" class="w-full p-3 border border-[#444] bg-[#333] text-white rounded-lg focus:ring-logo-gold focus:border-logo-gold text-sm sm:text-base" required>
+                            <div id="email-error" class="error-message"></div>
+                            <p class="text-xs text-[#b3b3b3] mt-1 text-left">⚠️ Use seu email pessoal para liberar o acesso</p>
+                        </div>
                         
                         <!-- CTA Dourado Principal -->
-                        <button type="submit" class="w-full bg-logo-gold text-gray-900 font-extrabold text-base sm:text-lg py-3 rounded-xl shadow-md hover:bg-opacity-90 transition duration-300 transform hover:scale-[1.01]">
-                            ACESSAR CALCULADORA E GUIA OURO!
+                        <button type="submit" class="w-full bg-logo-gold text-gray-900 font-extrabold text-base sm:text-lg py-3 rounded-xl shadow-md hover:bg-opacity-90 transition duration-300 transform hover:scale-[1.01] tracking-wide">
+                            ACESSAR A CALCULADORA DE LUCRO!
                         </button>
                     </form>
                 </div>
@@ -232,12 +274,16 @@
                             <p id="max-return" class="text-xl sm:text-2xl font-extrabold text-white">R$ 0,00</p>
                         </div>
 
-                        <p class="text-sm sm:text-base text-logo-gold mt-4 font-semibold">Este valor é o que você pode estar lucrando TODO ANO! Clique abaixo e agende sua consulta!</p>
+                        <p class="text-sm sm:text-base text-logo-gold mt-4 font-semibold">Este valor é o que você pode estar lucrando todo ano! Clique abaixo e agende sua consulta!</p>
                         
-                        <!-- CTA Secundário Pós-Cálculo -->
-                        <a href="#assessoria" class="mt-6 inline-block bg-logo-gold text-gray-900 font-bold text-base sm:text-lg px-6 sm:px-8 py-3 rounded-lg shadow-md hover:bg-opacity-90 transition duration-300">
-                            QUERO LUCRAR ESSE VALOR
-                        </a>
+                        <!-- NOVO: CTA Principal após cálculo -->
+                        <div class="mt-6 p-4 bg-[#333] rounded-xl border-2 border-logo-gold">
+                            <p class="text-lg font-bold text-logo-gold mb-3">🎯 AGORA É SUA CHANCE!</p>
+                            <p class="text-sm text-[#b3b3b3] mb-4">Não deixe esse dinheiro na mesa. Fale com nosso especialista e comece a lucrar em até 72 horas!</p>
+                            <a href="https://wa.me/5511976134095" target="_blank" class="inline-block bg-logo-gold text-gray-900 font-bold text-lg px-8 py-3 rounded-lg shadow-md hover:bg-opacity-90 transition duration-300 w-full">
+                                🚀 QUERO COMEÇAR A LUCRAR AGORA!
+                            </a>
+                        </div>
 
                     </div>
                 </div>
@@ -280,7 +326,7 @@
                     </div>
                     
                     <!-- CTA Dourado (Repetição de CTA de Conversão) -->
-                    <a href="#assessoria" class="mt-8 sm:mt-10 inline-block bg-logo-gold text-gray-900 font-bold text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-5 rounded-lg shadow-2xl shadow-yellow-700/30 hover:bg-opacity-90 transition duration-300 tracking-wide">
+                    <a href="https://wa.me/5511976134095" target="_blank" class="mt-8 sm:mt-10 inline-block bg-logo-gold text-gray-900 font-bold text-base sm:text-lg px-6 sm:px-10 py-4 sm:py-5 rounded-lg shadow-2xl shadow-yellow-700/30 hover:bg-opacity-90 transition duration-300 tracking-wide">
                         AGENDAR MINHA CONSULTORIA VIP
                     </a>
                 </div>
@@ -383,51 +429,244 @@
             </div>
         </div>
     </section>
+
+    <!-- Seção de Garantia e Urgência -->
+    <section class="bg-[#1a1a1a] py-16 border-t border-[#333]">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-logo-gold">🚀 Não Deixe o Dinheiro na Mesa</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-10">
+                <div class="bg-[#262626] p-6 rounded-2xl border-2 border-logo-gold">
+                    <h3 class="text-xl font-semibold mb-4 text-white">⏳ Oferta por Tempo Limitado</h3>
+                    <p class="text-[#b3b3b3] mb-4">As vagas para assessoria personalizada são limitadas para garantir a qualidade do serviço.</p>
+                    <div class="bg-logo-gold text-gray-900 font-bold py-2 px-4 rounded-lg inline-block">
+                        ÚLTIMAS VAGAS DISPONÍVEIS
+                    </div>
+                </div>
+                
+                <div class="bg-[#262626] p-6 rounded-2xl border-2 border-logo-gold">
+                    <h3 class="text-xl font-semibold mb-4 text-white">💰 7 Dias de Garantia</h3>
+                    <p class="text-[#b3b3b3] mb-4">Experimente nossa assessoria por 7 dias. Se não gostar, devolvemos 100% do seu investimento.</p>
+                    <div class="bg-logo-gold text-gray-900 font-bold py-2 px-4 rounded-lg inline-block">
+                        RISCO ZERO
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Final Urgente -->
+            <div class="bg-[#262626] p-8 rounded-2xl border-2 border-logo-gold">
+                <h3 class="text-2xl font-bold mb-4 text-logo-gold">🎯 Comece a Lucrar em 72 Horas</h3>
+                <p class="text-lg text-[#b3b3b3] mb-6">Não perca mais tempo deixando dinheiro na mesa. Nossa equipe está pronta para transformar seus gastos em lucro.</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="https://wa.me/5511976134095" target="_blank" class="bg-logo-gold text-gray-900 font-bold text-lg px-8 py-4 rounded-lg shadow-2xl hover:bg-opacity-90 transition duration-300">
+                        📞 FALAR COM CONSULTOR
+                    </a>
+                    <a href="#calculadora" class="bg-transparent border-2 border-logo-gold text-logo-gold font-bold text-lg px-8 py-4 rounded-lg hover:bg-logo-gold hover:text-gray-900 transition duration-300">
+                        📊 CALCULAR MEU LUCRO
+                    </a>
+                </div>
+                
+                <p class="text-sm text-[#b3b3b3] mt-4">
+                    ⚡ <strong>Atendimento imediato</strong> via WhatsApp | 🕒 Segunda a Sábado, 9h às 18h
+                </p>
+            </div>
+        </div>
+    </section>
     
-    <!-- Rodapé -->
+    <!-- Rodapé (Sem o email de destino) -->
     <footer class="bg-[#1a1a1a] text-white py-8 border-t border-logo-gold/50">
         <div class="container mx-auto px-4 text-center">
             <p class="text-sm text-[#b3b3b3]">&copy; 2025 SD Viagens. Sua Renda Extra em Piloto Automático.</p>
-            <div class="mt-2 text-xs opacity-70">
-                <a href="#" class="hover:text-logo-gold mx-2">Política de Privacidade</a> | 
+            <div class="mt-2 text-xs opacity-70 flex justify-center space-x-4 flex-wrap">
+                <a href="#" class="hover:text-logo-gold mx-2">Política de Privacidade</a> 
+                <span class="text-[#b3b3b3] hidden sm:inline">|</span>
                 <a href="#" class="hover:text-logo-gold mx-2">Termos de Uso</a>
             </div>
         </div>
     </footer>
 
-    <!-- Script JavaScript para a Calculadora com GATING COMPLETO -->
     <script>
+        // Lista de domínios de email temporários/disponíveis
+        const disposableDomains = [
+            'tempmail.com', 'mailinator.com', 'guerrillamail.com', '10minutemail.com',
+            'throwawaymail.com', 'yopmail.com', 'fakeinbox.com', 'temp-mail.org',
+            'trashmail.com', 'getairmail.com', 'maildrop.cc', 'tempmailaddress.com',
+            'fake-mail.com', 'mytemp.email', 'sharklasers.com', 'guerrillamail.net'
+        ];
+        
+        // --- Endereço de Email para onde os leads serão enviados (FormSubmit Endpoint) ---
+        const LEAD_TARGET_EMAIL = 'sd1viagens@gmail.com'; 
+
         /**
-         * Lida com o envio do formulário, simula a captura de lead e revela a calculadora.
+         * Valida se o email não é de um domínio temporário
          */
-        function submitLeadAndRevealCalculator() {
-            const leadName = document.getElementById('lead-name').value;
-            const leadEmail = document.getElementById('lead-email').value;
-            const leadGateDiv = document.getElementById('lead-gate');
-            const fullCalculatorDiv = document.getElementById('full-calculator');
-
-            // Validação simples
-            if (!leadName || !leadEmail) {
-                console.error("Por favor, preencha todos os campos do cadastro.");
-                return; 
-            }
-            
-            // --- Lógica de Captura de Lead (Aqui seria a chamada Firebase/API) ---
-            console.log(`Lead Capturado (Acesso à Calculadora): Nome: ${leadName}, Email: ${leadEmail}.`);
-            // Simulação de envio
-
-            // 1. Esconde o gate de lead
-            leadGateDiv.classList.add('hidden');
-            
-            // 2. Revela o container da calculadora
-            fullCalculatorDiv.classList.remove('hidden');
-
-            // Opcional: Rola a tela para garantir que a calculadora fique visível
-            document.getElementById('full-calculator').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        function isValidEmailDomain(email) {
+            const domain = email.split('@')[1].toLowerCase();
+            return !disposableDomains.includes(domain);
         }
 
         /**
-         * Calcula e exibe a perda mínima e máxima, acionada APÓS a revelação.
+         * Valida o formato do email
+         */
+        function isValidEmailFormat(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        /**
+         * Mostra mensagem de erro
+         */
+        function showError(field, message) {
+            const errorElement = document.getElementById(field + '-error');
+            const inputElement = document.getElementById(field);
+            
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            inputElement.classList.add('input-error');
+            
+            // Remove o erro após 5 segundos
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+                inputElement.classList.remove('input-error');
+            }, 5000);
+        }
+
+        /**
+         * Validação completa do formulário
+         */
+        function validateForm(name, email) {
+            let isValid = true;
+            
+            // Limpa erros anteriores
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('input').forEach(el => el.classList.remove('input-error'));
+
+
+            // Validação do nome
+            if (!name || name.trim().length < 3) {
+                showError('name', 'O nome deve ter pelo menos 3 caracteres');
+                isValid = false;
+            }
+
+            // Validação do email
+            if (!email || !isValidEmailFormat(email)) {
+                showError('email', 'Por favor, digite um email válido');
+                isValid = false;
+            } else if (!isValidEmailDomain(email)) {
+                showError('email', 'Por favor, use seu email pessoal para garantir a liberação do seu acesso');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        /**
+         * Lida com o envio do formulário, enviando os dados para o email via FormSubmit AJAX.
+         */
+        async function submitLeadAndRevealCalculator() {
+            const leadName = document.getElementById('lead-name').value.trim();
+            const leadEmail = document.getElementById('lead-email').value.trim().toLowerCase();
+            const leadGateDiv = document.getElementById('lead-gate');
+            const fullCalculatorDiv = document.getElementById('full-calculator');
+            const submitButton = document.querySelector('#lead-gate button[type="submit"]');
+
+            // 1. Validação
+            if (!validateForm(leadName, leadEmail)) {
+                return;
+            }
+
+            // 2. Estado de Loading
+            submitButton.disabled = true;
+            // Adiciona um spinner e muda o texto
+            submitButton.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-900 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> ENVIANDO...`;
+
+            // 3. Configuração do FormSubmit AJAX
+            // Usamos o endpoint AJAX do FormSubmit para evitar redirecionamento
+            const formSubmitUrl = `https://formsubmit.co/ajax/${LEAD_TARGET_EMAIL}`;
+            
+            // Dados a serem enviados
+            const formData = new FormData();
+            formData.append('Nome', leadName); // Nome do campo para o email
+            formData.append('Email', leadEmail); // Nome do campo para o email
+            formData.append('_subject', 'NOVO LEAD: Interessado em Assessoria de Milhas (Landing Page)'); // Assunto do email
+            
+            // Simulação de delay para fins de demonstração (Remover em produção)
+            // await new Promise(resolve => setTimeout(resolve, 1500));
+
+            try {
+                const response = await fetch(formSubmitUrl, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                // O FormSubmit AJAX retorna 200/OK, mesmo que a resposta interna indique sucesso/falha
+                const data = await response.json(); 
+
+                if (data.success) {
+                    console.log('Lead enviado com sucesso via FormSubmit AJAX.');
+                    
+                    // --- Sucesso: Revela a Calculadora ---
+                    leadGateDiv.classList.add('hidden');
+                    fullCalculatorDiv.classList.remove('hidden');
+                    showThankYouMessage();
+
+                    document.getElementById('full-calculator').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                } else {
+                    // Tratar falha de envio (Mensagem de erro do FormSubmit, se houver)
+                    throw new Error(data.message || 'Falha ao enviar o lead. Tente novamente.');
+                }
+            } catch (error) {
+                console.error('Erro no envio do formulário:', error);
+                // Exibir um erro genérico para o usuário
+                showError('email', 'Houve um erro no envio. Por favor, tente novamente.');
+            } finally {
+                // 4. Restaurar estado do botão
+                submitButton.disabled = false;
+                submitButton.innerHTML = 'ACESSAR A CALCULADORA DE LUCRO!';
+            }
+        }
+
+        /**
+         * Mostra mensagem de agradecimento após cadastro
+         */
+        function showThankYouMessage() {
+            // Criar overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+            
+            // Criar mensagem de agradecimento
+            const thankYouDiv = document.createElement('div');
+            thankYouDiv.className = 'thank-you-message';
+            thankYouDiv.innerHTML = `
+                <div class="text-4xl mb-4 text-logo-gold">🎉</div>
+                <h3 class="text-2xl font-bold text-logo-gold mb-3">Cadastro Realizado com Sucesso!</h3>
+                <p class="text-[#b3b3b3] mb-4">Obrigado por se cadastrar! Sua liberação de acesso foi processada e o lead enviado para nossa equipe.</p>
+                <p class="text-sm text-logo-gold mb-6">Seu acesso completo à calculadora de lucros foi liberado!</p>
+                <button onclick="closeThankYouMessage()" class="bg-logo-gold text-gray-900 font-bold py-2 px-6 rounded-lg hover:bg-opacity-90 transition duration-300">
+                    Começar Cálculo
+                </button>
+            `;
+            
+            // Adicionar ao body
+            document.body.appendChild(overlay);
+            document.body.appendChild(thankYouDiv);
+        }
+
+        /**
+         * Fecha a mensagem de agradecimento
+         */
+        function closeThankYouMessage() {
+            const overlay = document.querySelector('.overlay');
+            const thankYou = document.querySelector('.thank-you-message');
+            
+            if (overlay) overlay.remove();
+            if (thankYou) thankYou.remove();
+        }
+
+        /**
+         * Calcula e exibe a perda mínima e máxima
          */
         function calculateFullLoss() {
             const monthlySpending = parseFloat(document.getElementById('monthly-expense').value);
@@ -445,10 +684,10 @@
             // Gasto Anual Total (12 meses)
             const annualSpending = monthlySpending * 12;
 
-            // Retorno Mínimo (4% do gasto anual) - O valor que o usuário DEVERIA capturar
+            // Retorno Mínimo (4% do gasto anual)
             const minReturn = annualSpending * 0.04;
 
-            // Retorno Máximo (8% do gasto anual) - O valor que o usuário PODE capturar
+            // Retorno Máximo (8% do gasto anual)
             const maxReturn = annualSpending * 0.08;
             
             // Formatação para Moeda Brasileira (R$)
@@ -459,14 +698,16 @@
                 maximumFractionDigits: 2,
             });
 
-            // 1. Atualiza o display com os valores (mínimo e máximo)
+            // Atualiza o display com os valores
             minReturnElement.innerText = formatter.format(minReturn);
             maxReturnElement.innerText = formatter.format(maxReturn);
 
-            // 2. Mostra os resultados finais
+            // Mostra os resultados finais
             finalResultsDiv.classList.remove('hidden');
+
+            // Rola para os resultados
+            finalResultsDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     </script>
-
 </body>
 </html>
