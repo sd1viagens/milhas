@@ -140,6 +140,7 @@
                 <nav class="flex flex-col md:flex-row md:space-x-8 mt-4 md:mt-0 items-center space-y-4 md:space-y-0">
                     <a href="#calculadora" class="block w-full text-center text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0">💰 Calculadora</a>
                     <a href="#assessoria" class="block w-full text-center text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0">💎 Assessoria</a>
+                    <a href="#viagens" class="block w-full text-center text-white hover:text-logo-gold transition-colors duration-300 py-2 md:py-0">✈️ Viagens</a>
                 </nav>
             </div>
         </div>
@@ -152,9 +153,9 @@
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
                 Domine o <span class="text-logo-gold">Método 4x de Milhas</span> e Conquiste Renda Extra Mensal
             </h1>
-            <!-- Subtítulo Persuasivo (Copywriting) -->
+            <!-- Subtítulo Persuasivo (Copywriting) - CORRIGIDO O BOLD (usando <span> com classes) -->
             <p class="text-lg sm:text-xl md:text-2xl font-light mb-10 opacity-90 text-[#b3b3b3]">
-                A assessoria que transforma seus gastos em uma fonte consistente de <strong>lucros mensais de R$ 3.000 a R$ 8.000</strong>, preservando seu tempo e capital.
+                A assessoria que transforma seus gastos em uma fonte de renda consistente, garantindo um retorno de <span class="font-extrabold text-white">4% a 8% de lucro real</span> sobre seu consumo mensal.
             </p>
             
             <!-- Call to Action (CTA) Principal - DOURADO PROFUNDO E RICO PARA CONVERSÃO -->
@@ -165,8 +166,8 @@
             <!-- Navegação Rápida para as Seções (Texto em Cinza Claro) -->
             <nav class="mt-8 sm:mt-12">
                 <ul class="flex flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm md:text-base font-medium">
-                    <li><a href="#calculadora" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">💰 Calculadora de Lucro</a></li>
-                    <li><a href="#assessoria" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">💳 Assessoria Exclusiva</a></li>
+                    <li><a href="#calculadora" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">💰 Calculadora</a></li>
+                    <li><a href="#assessoria" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">💎 Assessoria</a></li>
                     <li><a href="#viagens" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">✈️ Viagens de Luxo</a></li>
                 </ul>
             </nav>
@@ -186,18 +187,18 @@
                     <p class="text-[#b3b3b3] text-sm">Revelamos a estratégia bancária que transforma seus cartões em geradores de capital, e não em meros facilitadores de débito. Pare de perder dinheiro, comece a lucrar.</p>
                 </div>
 
-                <!-- Benefício 2: A Fórmula Secreta 4x -->
+                <!-- Benefício 2: A Multiplicação de Capital (Renda Extra) - CORRIGIDO O BOLD -->
                 <div class="card bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-xl shadow-black/50 border-t-4 border-logo-gold hover:shadow-2xl transition duration-300">
                     <div class="text-4xl text-logo-gold mb-4">💰</div>
-                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">A Multiplicação de Capital 4X</h3>
-                    <p class="text-[#b3b3b3] text-sm">Aprenda a tática para converter compras de R$ 100 em até R$ 400 em valor resgatável. É o método mais seguro e de alta rentabilidade para o seu perfil.</p>
+                    <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">A Multiplicação de Capital (Renda Extra)</h3>
+                    <p class="text-[#b3b3b3] text-sm">Domine a tática para transformar seus gastos mensais em uma fonte de renda extra. Garanta um retorno de <span class="font-extrabold text-white">4% a 8% de lucro real</span> sobre todo o seu consumo, transformando seu cartão em máquina de gerar caixa.</p>
                 </div>
 
                 <!-- Benefício 3: Piloto Automático de Lucros (Delegação) -->
                 <div class="card bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-xl shadow-black/50 border-t-4 border-logo-gold hover:shadow-2xl transition duration-300">
                     <div class="text-4xl text-logo-gold mb-4">⚙️</div>
                     <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">Execução em Piloto Automático</h3>
-                    <p class="text-[#b3b3b3] text-sm">Nossa assessoria executa a venda das suas milhas no <strong>pico de valor</strong> e no timing correto. Você só confere o lucro caindo na sua conta, sem gerenciar operações.</p>
+                    <p class="text-[#b3b3b3] text-sm">Nossa assessoria executa a venda das suas milhas no pico de valor e no timing correto. Você só confere o lucro caindo na sua conta, sem gerenciar operações.</p>
                 </div>
             </div>
         </div>
@@ -216,7 +217,7 @@
                 <!-- GATE DE CAPTURA DE LEAD -->
                 <div id="lead-gate">
                     <p class="text-base sm:text-lg font-bold text-white mb-4">
-                        Insira seus dados para liberar o acesso à <strong>Calculadora de Lucro</strong>:
+                        Insira seus dados para liberar o acesso à <strong class="text-logo-gold">Calculadora de Lucro</strong>:
                     </p>
 
                     <!-- Formulário de Captura (Agora controlado via JS para envio AJAX) -->
@@ -306,7 +307,7 @@
                             <span class="text-logo-gold text-2xl sm:text-3xl mr-4 mt-1">✨</span>
                             <div>
                                 <h3 class="text-lg sm:text-xl font-semibold text-white">Consultoria 1-on-1 Personalizada</h3>
-                                <p class="text-[#b3b3b3] text-sm">Análise detalhada do seu perfil de gastos e crédito para montar uma estratégia de milhas com a maior rentabilidade (4% a 8% de retorno).</p>
+                                <p class="text-[#b3b3b3] text-sm">Análise detalhada do seu perfil de gastos e crédito para montar uma estratégia de milhas com a maior rentabilidade (<strong class="text-white">4% a 8% de retorno</strong>).</p>
                             </div>
                         </div>
                         <div class="flex items-start">
@@ -348,7 +349,7 @@
     <section id="viagens" class="py-12 sm:py-16 md:py-20 bg-[#262626] border-t border-[#333]">
         <div class="container mx-auto px-4 max-w-6xl text-center">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-logo-gold">3. Viagens de Classe Executiva: O Bônus da Renda</h2>
-            <p class="text-lg sm:text-xl text-[#b3b3b3] mb-8 sm:mb-12">Use o lucro gerado com milhas para viajar com conforto e luxo, sem pagar a mais por isso.</p>
+            <p class="text-lg sm:text-xl text-[#b3b3b3] text-center mb-8 sm:mb-12">Use o lucro gerado com milhas para viajar com conforto e luxo, sem pagar a mais por isso.</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
                 <!-- Cartão 1 -->
@@ -373,7 +374,7 @@
                 <div class="card bg-[#1a1a1a] p-5 sm:p-6 rounded-2xl shadow-xl shadow-black/30 border-t-4 border-logo-gold">
                     <div class="text-4xl mb-3 text-logo-gold">🛒</div>
                     <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">Kits de Viagem Exclusivos</h3>
-                    <p class="text-[#b3b3b3] text-sm">Acesso a pacotes completos com até <strong>60% de economia</strong> - voos, hospedagem e traslados por valores que você não encontra em nenhum outro lugar.</p>
+                    <p class="text-[#b3b3b3] text-sm">Acesso a pacotes completos com até 60% de economia - voos, hospedagem e traslados por valores que você não encontra em nenhum outro lugar.</p>
                 </div>
             </div>
 
@@ -387,7 +388,7 @@
                         <ul class="text-[#b3b3b3] space-y-2 text-sm sm:text-base">
                             <li class="flex items-start">
                                 <span class="text-logo-gold mr-2">✓</span>
-                                <span>Descontos de <strong>40% a 60%</strong> em resorts premium</span>
+                                <span><strong class="text-white">Descontos de 40% a 60%</strong> em resorts premium</span>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-logo-gold mr-2">✓</span>
@@ -409,7 +410,7 @@
                             </li>
                             <li class="flex items-start">
                                 <span class="text-logo-gold mr-2">✓</span>
-                                <span>Last minutes com até <strong>70% de desconto</strong></span>
+                                <span>Last minutes com <strong class="text-white">até 70% de desconto</strong></span>
                             </li>
                             <li class="flex items-start">
                                 <span class="text-logo-gold mr-2">✓</span>
@@ -468,7 +469,7 @@
                 </div>
                 
                 <p class="text-sm text-[#b3b3b3] mt-4">
-                    ⚡ <strong>Atendimento imediato</strong> via WhatsApp | 🕒 Segunda a Sábado, 9h às 18h
+                    ⚡ Atendimento imediato via WhatsApp | 🕒 Segunda a Sábado, 9h às 18h
                 </p>
             </div>
         </div>
