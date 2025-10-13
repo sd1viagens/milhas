@@ -168,7 +168,7 @@
                 <ul class="flex flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm md:text-base font-medium">
                     <li><a href="#calculadora" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">💰 Calculadora</a></li>
                     <li><a href="#assessoria" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">💎 Assessoria</a></li>
-                    <li><a href="#viagens" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">✈️ Viagens de Luxo</a></li>
+                    <li><a href="#viagens" class="text-[#b3b3b3] hover:text-logo-gold transition duration-150">✈️ Viagens</a></li>
                 </ul>
             </nav>
         </div>
@@ -187,7 +187,7 @@
                     <p class="text-[#b3b3b3] text-sm">Revelamos a estratégia bancária que transforma seus cartões em geradores de capital, e não em meros facilitadores de débito. Pare de perder dinheiro, comece a lucrar.</p>
                 </div>
 
-                <!-- Benefício 2: A Multiplicação de Capital (Renda Extra) - CORRIGIDO O BOLD -->
+                <!-- Benefício 2: A Multiplicação de Capital (Renda Extra) -->
                 <div class="card bg-[#1a1a1a] p-6 sm:p-8 rounded-2xl shadow-xl shadow-black/50 border-t-4 border-logo-gold hover:shadow-2xl transition duration-300">
                     <div class="text-4xl text-logo-gold mb-4">💰</div>
                     <h3 class="text-lg sm:text-xl font-semibold mb-2 text-white">A Multiplicação de Capital (Renda Extra)</h3>
@@ -332,13 +332,34 @@
                     </a>
                 </div>
 
-                <!-- Imagem Mockup (Placeholder) -->
+                <!-- GRÁFICO DE CRESCIMENTO FINANCEIRO EM OURO (AGORA LINEAR) -->
                 <div class="hidden md:block">
-                    <!-- Placeholder de fundo Grafite Escuro para contraste, com borda dourada profunda -->
                     <div class="bg-[#262626] p-6 sm:p-8 rounded-3xl shadow-xl border-4 border-logo-gold h-80 sm:h-96 flex items-center justify-center">
-                         <p class="text-lg sm:text-2xl font-bold text-logo-gold/50 text-center leading-relaxed">
-                            [Gráfico de Crescimento Financeiro em Ouro]
-                        </p>
+                         <!-- SVG para Gráfico de Crescimento em Ouro -->
+                        <svg viewBox="0 0 400 300" class="w-full h-full p-4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Eixo Y e X (Linhas discretas) -->
+                            <line x1="50" y1="270" x2="50" y2="30" stroke="#333" stroke-width="2"/>
+                            <line x1="50" y1="270" x2="380" y2="270" stroke="#333" stroke-width="2"/>
+
+                            <!-- Título do Gráfico -->
+                            <text x="50" y="20" font-family="'Playfair Display', serif" font-size="20" fill="#C0A05D" font-weight="bold">Renda Extra Mensal (Estratégia 4x)</text>
+
+                            <!-- Linha de Crescimento Linear (Representa o acúmulo constante) -->
+                            <path d="M 50 270 L 350 50" 
+                                stroke="#C0A05D" 
+                                stroke-width="6" 
+                                fill="none" 
+                                style="filter: drop-shadow(0 0 5px rgba(192, 160, 93, 0.8));"
+                            />
+                            
+                            <!-- Destaque do Ponto Final (Lucro Máximo) -->
+                            <circle cx="350" cy="50" r="8" fill="#C0A05D" stroke="#1a1a1a" stroke-width="3"/>
+                            
+                            <!-- Rótulo Mês/Tempo -->
+                            <text x="350" y="295" font-family="'Playfair Display', serif" font-size="14" fill="#b3b3b3" text-anchor="middle">Tempo</text>
+                            <!-- Rótulo Lucro/Valor -->
+                            <text x="40" y="55" font-family="'Playfair Display', serif" font-size="14" fill="#b3b3b3" text-anchor="end">Lucro</text>
+                        </svg>
                     </div>
                 </div>
             </div>
