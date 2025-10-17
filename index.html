@@ -6,20 +6,25 @@
     <title>Assessoria de Milhas | SD Viagens</title>
     <!-- Carregando Tailwind CSS para Estilização Moderna e Responsiva -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Configuração de Fonte Playfair Display (igual ao site SD Viagens) -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Configuração de Fonte Inter para maior legibilidade (Substituindo Playfair Display) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             background-color: #1a1a1a;
             color: #b3b3b3;
         }
+        /* Definição das cores da marca (Dourado/Gold) */
         .text-logo-gold {
-            color: #C0A05D;
+            color: #C0A05D; /* Dourado */
         }
         .bg-logo-gold {
-            background-color: #C0A05D;
+            background-color: #C0A05D; /* Dourado */
         }
+        .border-logo-gold {
+            border-color: #C0A05D;
+        }
+        /* Efeitos de Cartão */
         .card {
             transition: transform 0.3s, box-shadow 0.3s;
             border: 1px solid transparent;
@@ -30,6 +35,7 @@
             box-shadow: 0 10px 18px rgba(0,0,0,0.5);
             border: 1px solid #C0A05D;
         }
+        /* Estilo do Input R$ */
         .input-currency::before {
             content: 'R$';
             position: absolute;
@@ -43,6 +49,7 @@
             padding-left: 3.5rem;
             color: #1F2937; 
         }
+        /* Botão Flutuante (WhatsApp) */
         .whatsapp-float {
             position: fixed;
             width: 60px;
@@ -75,29 +82,28 @@
         .pulse {
             animation: pulse 2s infinite;
         }
-        .thank-you-message {
+        /* Mensagem de Agradecimento e Modais Legais */
+        .modal-container {
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 9999; /* Z-index alto para garantir sobreposição */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-content {
             background: #1a1a1a;
             border: 3px solid #C0A05D;
             border-radius: 15px;
             padding: 30px;
-            z-index: 1000;
-            text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            max-width: 90%;
-            width: 400px;
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 999;
+            max-width: 95%;
+            width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
         }
         .error-message {
             color: #ef4444;
@@ -108,13 +114,25 @@
         .input-error {
             border-color: #ef4444 !important;
         }
-        /* Spinner CSS para o botão de envio */
         .animate-spin {
             animation: spin 1s linear infinite;
         }
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
+        }
+        .prose-custom p, .prose-custom ul {
+            margin-bottom: 1rem;
+            color: #b3b3b3;
+        }
+        .prose-custom strong {
+            color: #ffffff;
+        }
+        .prose-custom h3 {
+            color: #C0A05D;
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
@@ -128,7 +146,7 @@
     </a>
 
     <!-- Header - Com navegação e texto dourado -->
-    <header class="text-white p-0 shadow-lg">
+    <header class="text-white p-0 shadow-lg bg-[#1a1a1a] sticky top-0 z-10">
         <div class="p-6 md:p-10 z-20 relative">
             <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-4">
@@ -153,14 +171,14 @@
             <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
                 Domine o <span class="text-logo-gold">Método 4x de Milhas</span> e Conquiste Renda Extra Mensal
             </h1>
-            <!-- Subtítulo Persuasivo (Copywriting) - CORRIGIDO O BOLD (usando <span> com classes) -->
+            <!-- Subtítulo Persuasivo (Copywriting) -->
             <p class="text-lg sm:text-xl md:text-2xl font-light mb-10 opacity-90 text-[#b3b3b3]">
                 A assessoria que transforma seus gastos em uma fonte de renda consistente, garantindo um retorno de <span class="font-extrabold text-white">4% a 8% de lucro real</span> sobre seu consumo mensal.
             </p>
             
-            <!-- Call to Action (CTA) Principal - DOURADO PROFUNDO E RICO PARA CONVERSÃO -->
+            <!-- Call to Action (CTA) Principal OTIMIZADO -->
             <a href="#calculadora" class="inline-block bg-logo-gold text-gray-900 font-bold text-base sm:text-lg md:text-xl px-6 sm:px-10 py-4 sm:py-5 rounded-lg shadow-2xl shadow-yellow-700/30 hover:bg-opacity-90 transition duration-300 transform hover:scale-105 tracking-wide">
-                GARANTIR MINHA VAGA NA ASSESSORIA 🚀
+                CALCULAR MEU LUCRO AGORA 💰
             </a>
 
             <!-- Navegação Rápida para as Seções (Texto em Cinza Claro) -->
@@ -332,7 +350,7 @@
                             <line x1="50" y1="270" x2="380" y2="270" stroke="#333" stroke-width="2"/>
 
                             <!-- Título do Gráfico -->
-                            <text x="50" y="20" font-family="'Playfair Display', serif" font-size="20" fill="#C0A05D" font-weight="bold">Renda Extra Mensal (Estratégia 4x)</text>
+                            <text x="50" y="20" font-family="'Inter', sans-serif" font-size="20" fill="#C0A05D" font-weight="bold">Renda Extra Mensal (Estratégia 4x)</text>
 
                             <!-- Linha de Crescimento Linear (Representa o acúmulo constante) -->
                             <path d="M 50 270 L 350 50" 
@@ -346,9 +364,9 @@
                             <circle cx="350" cy="50" r="8" fill="#C0A05D" stroke="#1a1a1a" stroke-width="3"/>
                             
                             <!-- Rótulo Mês/Tempo -->
-                            <text x="350" y="295" font-family="'Playfair Display', serif" font-size="14" fill="#b3b3b3" text-anchor="middle">Tempo</text>
+                            <text x="350" y="295" font-family="'Inter', sans-serif" font-size="14" fill="#b3b3b3" text-anchor="middle">Tempo</text>
                             <!-- Rótulo Lucro/Valor -->
-                            <text x="40" y="55" font-family="'Playfair Display', serif" font-size="14" fill="#b3b3b3" text-anchor="end">Lucro</text>
+                            <text x="40" y="55" font-family="'Inter', sans-serif" font-size="14" fill="#b3b3b3" text-anchor="end">Lucro</text>
                         </svg>
                     </div>
                 </div>
@@ -385,9 +403,6 @@
                     </a>
                 </div>
             </div>
-            
-            <!-- O restante do conteúdo que estava aqui foi removido para diminuir a seção. -->
-
         </div>
     </section>
 
@@ -435,17 +450,77 @@
         </div>
     </section>
     
-    <!-- Rodapé (Sem o email de destino) -->
+    <!-- Rodapé (Com links funcionais para modais) -->
     <footer class="bg-[#1a1a1a] text-white py-8 border-t border-logo-gold/50">
         <div class="container mx-auto px-4 text-center">
             <p class="text-sm text-[#b3b3b3]">&copy; 2025 SD Viagens. Sua Renda Extra em Piloto Automático.</p>
             <div class="mt-2 text-xs opacity-70 flex justify-center space-x-4 flex-wrap">
-                <a href="#" class="hover:text-logo-gold mx-2">Política de Privacidade</a> 
+                <!-- LINKS CORRIGIDOS: Usando JS para abrir modais, não # -->
+                <a href="javascript:void(0)" onclick="showModal('policy')" class="hover:text-logo-gold mx-2 text-[#b3b3b3]">Política de Privacidade</a> 
                 <span class="text-[#b3b3b3] hidden sm:inline">|</span>
-                <a href="#" class="hover:text-logo-gold mx-2">Termos de Uso</a>
+                <a href="javascript:void(0)" onclick="showModal('terms')" class="hover:text-logo-gold mx-2 text-[#b3b3b3]">Termos de Uso</a>
             </div>
         </div>
     </footer>
+
+    <!-- MODAL: Política de Privacidade (Implementação para ser aprovada em Ads) -->
+    <div id="policy-modal" class="modal-container hidden">
+        <div class="modal-content">
+            <h2 class="text-3xl font-bold text-logo-gold mb-6 border-b border-[#333] pb-2">Política de Privacidade</h2>
+            <div class="text-sm prose-custom">
+                <p><strong>1. Introdução</strong></p>
+                <p>Nós valorizamos a sua privacidade. Esta política descreve como coletamos, usamos e protegemos as suas informações pessoais ao utilizar nossos serviços e este website.</p>
+
+                <h3>2. Coleta de Dados</h3>
+                <p>Coletamos informações que você nos fornece diretamente (nome, email, gastos inseridos na calculadora) e dados de uso automático (endereço IP, tipo de navegador, páginas visitadas) através de ferramentas de análise e cookies.</p>
+
+                <h3>3. Uso dos Dados</h3>
+                <p>Seus dados são usados exclusivamente para:</p>
+                <ul class="list-disc list-inside ml-4 mt-2 mb-4">
+                    <li>Contatar você para agendar a consultoria solicitada.</li>
+                    <li>Fornecer a funcionalidade da calculadora e o resultado da simulação.</li>
+                    <li>Melhorar nossos serviços e personalizar sua experiência no site.</li>
+                    <li>Cumprir obrigações legais e regulatórias.</li>
+                </ul>
+
+                <h3>4. Compartilhamento</h3>
+                <p>Não vendemos nem alugamos suas informações pessoais. Compartilhamos dados apenas com provedores de serviço (ex: FormSubmit para o envio de leads e plataformas de marketing) estritamente para a finalidade de operação do negócio, sob rígidos acordos de confidencialidade.</p>
+
+                <h3>5. Segurança e Seus Direitos</h3>
+                <p>Implementamos medidas de segurança para proteger seus dados. Você tem o direito de acessar, corrigir ou solicitar a exclusão de seus dados. Entre em contato através do WhatsApp para exercer esses direitos.</p>
+
+                <p class="mt-6 text-sm italic text-[#b3b3b3]">Esta política foi atualizada em 17 de Outubro de 2025.</p>
+            </div>
+            <button onclick="closeModal('policy')" class="absolute top-4 right-4 text-[#b3b3b3] hover:text-white text-3xl font-light leading-none">&times;</button>
+        </div>
+    </div>
+
+    <!-- MODAL: Termos de Uso (Implementação para ser aprovada em Ads) -->
+    <div id="terms-modal" class="modal-container hidden">
+        <div class="modal-content">
+            <h2 class="text-3xl font-bold text-logo-gold mb-6 border-b border-[#333] pb-2">Termos de Uso</h2>
+            <div class="text-sm prose-custom">
+                <p><strong>1. Aceitação dos Termos</strong></p>
+                <p>Ao acessar e utilizar este website e a calculadora, você concorda em cumprir e ser regido por estes Termos de Uso. Se você não concordar com qualquer parte dos termos, não deve utilizar nossos serviços.</p>
+
+                <h3>2. Isenção de Garantia (Disclaimer)</h3>
+                <p>A "Calculadora de Lucro Potencial" é uma ferramenta de simulação baseada em médias históricas e dados inseridos por você. Os resultados apresentados são projeções e **não constituem garantia de lucro futuro real**. O lucro real pode variar com base em sua execução, mudanças nas políticas das companhias aéreas e nas condições do mercado de milhas.</p>
+
+                <h3>3. Serviços de Assessoria</h3>
+                <p>A contratação da assessoria é formalizada por um contrato de serviço separado. Estes Termos de Uso cobrem apenas o uso do website, da calculadora e a captação de leads.</p>
+
+                <h3>4. Propriedade Intelectual</h3>
+                <p>Todo o conteúdo, design e código fonte deste website são propriedade exclusiva da SD Viagens e protegidos por leis de direitos autorais. O uso não autorizado é estritamente proibido.</p>
+
+                <h3>5. Limitação de Responsabilidade</h3>
+                <p>A SD Viagens não será responsável por quaisquer perdas ou danos decorrentes da sua confiança nos resultados da calculadora ou de informações fornecidas neste site.</p>
+
+                <p class="mt-6 text-sm italic text-[#b3b3b3]">Estes termos foram atualizados em 17 de Outubro de 2025.</p>
+            </div>
+            <button onclick="closeModal('terms')" class="absolute top-4 right-4 text-[#b3b3b3] hover:text-white text-3xl font-light leading-none">&times;</button>
+        </div>
+    </div>
+
 
     <script>
         // Lista de domínios de email temporários/disponíveis
@@ -460,24 +535,70 @@
         const LEAD_TARGET_EMAIL = 'sd1viagens@gmail.com'; 
 
         /**
-         * Valida se o email não é de um domínio temporário
+         * Funções de Controle dos Modais (Política e Termos)
          */
+        const policyModal = document.getElementById('policy-modal');
+        const termsModal = document.getElementById('terms-modal');
+
+        function showModal(type) {
+            if (type === 'policy') {
+                policyModal.classList.remove('hidden');
+            } else if (type === 'terms') {
+                termsModal.classList.remove('hidden');
+            }
+        }
+
+        function closeModal(type) {
+            if (type === 'policy') {
+                policyModal.classList.add('hidden');
+            } else if (type === 'terms') {
+                termsModal.classList.add('hidden');
+            }
+        }
+
+        // Torna as funções acessíveis globalmente
+        window.showModal = showModal;
+        window.closeModal = closeModal;
+
+
+        /**
+         * Funções de Autenticação e Firebase (Para compatibilidade com o ambiente)
+         */
+        // O código de importação do Firebase está no cabeçalho em <script type="module">
+        // Mantido aqui para referência, mas a lógica já foi carregada no início do body.
+
+        // Simulação de função alert/confirm com a modal de agradecimento
+        function showSimpleMessage(title, message) {
+            // Cria um modal temporário para substituir alert/confirm
+            const tempModal = document.createElement('div');
+            tempModal.className = 'modal-container';
+            tempModal.innerHTML = `
+                <div class="modal-content thank-you-message text-center">
+                    <div class="text-4xl mb-4 text-logo-gold">⚠️</div>
+                    <h3 class="text-2xl font-bold text-logo-gold mb-3">${title}</h3>
+                    <p class="text-[#b3b3b3] mb-6">${message}</p>
+                    <button onclick="this.closest('.modal-container').remove()" class="bg-logo-gold text-gray-900 font-bold py-2 px-6 rounded-lg hover:bg-opacity-90 transition duration-300">
+                        Entendi
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(tempModal);
+        }
+
+        /**
+         * Validação e Envio de Lead
+         */
+
         function isValidEmailDomain(email) {
             const domain = email.split('@')[1].toLowerCase();
             return !disposableDomains.includes(domain);
         }
 
-        /**
-         * Valida o formato do email
-         */
         function isValidEmailFormat(email) {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         }
 
-        /**
-         * Mostra mensagem de erro
-         */
         function showError(field, message) {
             const errorElement = document.getElementById(field + '-error');
             const inputElement = document.getElementById(field);
@@ -486,71 +607,54 @@
             errorElement.style.display = 'block';
             inputElement.classList.add('input-error');
             
-            // Remove o erro após 5 segundos
             setTimeout(() => {
                 errorElement.style.display = 'none';
                 inputElement.classList.remove('input-error');
             }, 5000);
         }
 
-        /**
-         * Validação completa do formulário de lead
-         */
         function validateForm(name, email) {
             let isValid = true;
             
-            // Limpa erros anteriores
             document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
-            // Apenas inputs no formulário de lead devem ser limpos
             const leadInputs = document.querySelectorAll('#lead-capture-post-calc input');
             leadInputs.forEach(el => el.classList.remove('input-error'));
 
-
-            // Validação do nome
             if (!name || name.trim().length < 3) {
                 showError('name', 'O nome deve ter pelo menos 3 caracteres');
                 isValid = false;
             }
 
-            // Validação do email
             if (!email || !isValidEmailFormat(email)) {
                 showError('email', 'Por favor, digite um email válido');
                 isValid = false;
             } else if (!isValidEmailDomain(email)) {
-                showError('email', 'Por favor, use seu email pessoal para garantir a liberação do seu acesso');
+                showError('email', 'Por favor, use seu email pessoal. Provedores temporários não são aceitos.');
                 isValid = false;
             }
 
             return isValid;
         }
 
-        /**
-         * Lida com o envio do formulário de lead após o cálculo.
-         */
         async function submitLead() {
             const leadName = document.getElementById('lead-name').value.trim();
             const leadEmail = document.getElementById('lead-email').value.trim().toLowerCase();
             const submitButton = document.getElementById('submit-lead-button');
 
-            // 1. Validação
             if (!validateForm(leadName, leadEmail)) {
                 return;
             }
 
-            // 2. Estado de Loading
             submitButton.disabled = true;
             const originalButtonText = submitButton.innerHTML;
-            // Adiciona um spinner e muda o texto
             submitButton.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-900 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> ENVIANDO...`;
 
-            // 3. Configuração do FormSubmit AJAX
             const formSubmitUrl = `https://formsubmit.co/ajax/${LEAD_TARGET_EMAIL}`;
             
-            // Dados a serem enviados
             const formData = new FormData();
             formData.append('Nome', leadName); 
             formData.append('Email', leadEmail); 
-            formData.append('_subject', 'NOVO LEAD: Agendamento de Consultoria (Pós-Cálculo)'); // Assunto do email
+            formData.append('_subject', 'NOVO LEAD: Agendamento de Consultoria (Pós-Cálculo)');
             
             try {
                 const response = await fetch(formSubmitUrl, {
@@ -561,105 +665,63 @@
                 const data = await response.json(); 
 
                 if (data.success) {
-                    console.log('Lead enviado com sucesso via FormSubmit AJAX.');
-                    
-                    // --- Sucesso: Mostra o agradecimento ---
                     showThankYouMessage();
-                    // Rola para o topo da seção para melhor UX de visualização da mensagem
                     document.getElementById('calculadora').scrollIntoView({ behavior: 'smooth', block: 'start' });
-
                 } else {
-                    // Tratar falha de envio 
                     throw new Error(data.message || 'Falha ao enviar o lead. Tente novamente.');
                 }
             } catch (error) {
                 console.error('Erro no envio do formulário:', error);
-                // Exibir um erro genérico para o usuário
                 showError('email', 'Houve um erro no envio. Por favor, tente novamente.');
             } finally {
-                // 4. Restaurar estado do botão
                 submitButton.disabled = false;
                 submitButton.innerHTML = originalButtonText;
             }
         }
 
-        /**
-         * Mostra mensagem de agradecimento após cadastro
-         */
         function showThankYouMessage() {
-            // Criar overlay
-            const overlay = document.createElement('div');
-            overlay.className = 'overlay';
-            
-            // Criar mensagem de agradecimento
             const thankYouDiv = document.createElement('div');
-            thankYouDiv.className = 'thank-you-message';
+            thankYouDiv.className = 'modal-container';
             thankYouDiv.innerHTML = `
-                <div class="text-4xl mb-4 text-logo-gold">🎉</div>
-                <h3 class="text-2xl font-bold text-logo-gold mb-3">Consulta Agendada!</h3>
-                <p class="text-[#b3b3b3] mb-4">Nossa equipe recebeu seus dados e entrará em contato em breve via WhatsApp para agendar sua consultoria gratuita.</p>
-                <p class="text-sm text-logo-gold mb-6">Continue explorando a página ou fale conosco diretamente!</p>
-                <button onclick="closeThankYouMessage()" class="bg-logo-gold text-gray-900 font-bold py-2 px-6 rounded-lg hover:bg-opacity-90 transition duration-300">
-                    Fechar e Continuar
-                </button>
+                <div class="modal-content thank-you-message text-center">
+                    <div class="text-4xl mb-4 text-logo-gold">🎉</div>
+                    <h3 class="text-2xl font-bold text-logo-gold mb-3">Consulta Agendada!</h3>
+                    <p class="text-[#b3b3b3] mb-4">Nossa equipe recebeu seus dados e entrará em contato em breve via WhatsApp para agendar sua consultoria gratuita.</p>
+                    <p class="text-sm text-logo-gold mb-6">Continue explorando a página ou fale conosco diretamente!</p>
+                    <button onclick="this.closest('.modal-container').remove()" class="bg-logo-gold text-gray-900 font-bold py-2 px-6 rounded-lg hover:bg-opacity-90 transition duration-300">
+                        Fechar e Continuar
+                    </button>
+                </div>
             `;
-            
-            // Adicionar ao body
-            document.body.appendChild(overlay);
             document.body.appendChild(thankYouDiv);
         }
 
         /**
-         * Fecha a mensagem de agradecimento
-         */
-        function closeThankYouMessage() {
-            const overlay = document.querySelector('.overlay');
-            const thankYou = document.querySelector('.thank-you-message');
-            
-            if (overlay) overlay.remove();
-            if (thankYou) thankYou.remove();
-        }
-
-        /**
-         * Calcula e exibe a perda mínima e máxima
+         * Funções da Calculadora
          */
         function calculateFullLoss() {
             const monthlySpendingInput = document.getElementById('monthly-expense');
             const monthlySpending = parseFloat(monthlySpendingInput.value);
             const resultsAreaDiv = document.getElementById('calculation-results-area');
-            const minReturnElement = document.getElementById('min-return');
-            const maxReturnElement = document.getElementById('max-return');
             
-            // Verifica se o input é um número válido
             if (isNaN(monthlySpending) || monthlySpending <= 100) {
-                // Remove classe de erro se existir
                 monthlySpendingInput.classList.remove('input-error');
                 
-                // Adiciona um feedback de erro simples na tela (sem usar alert/confirm)
-                if (resultsAreaDiv.classList.contains('hidden')) {
-                     alert("Por favor, insira um gasto mensal válido (maior que R$ 100) para calcular seu lucro.");
-                } else {
-                    // Se a área de resultados já estiver visível, a mantém, mas garante que o input seja marcado
-                    monthlySpendingInput.classList.add('input-error');
-                }
+                showSimpleMessage(
+                    "Erro de Cálculo",
+                    "Por favor, insira um gasto mensal válido (maior que R$ 100) no cartão para calcular seu lucro potencial."
+                );
                 
                 resultsAreaDiv.classList.add('hidden');
                 return;
             }
             
-            // Remove a classe de erro se o cálculo for bem-sucedido
             monthlySpendingInput.classList.remove('input-error');
 
-            // Gasto Anual Total (12 meses)
             const annualSpending = monthlySpending * 12;
-
-            // Retorno Mínimo (4% do gasto anual)
             const minReturn = annualSpending * 0.04;
-
-            // Retorno Máximo (8% do gasto anual)
             const maxReturn = annualSpending * 0.08;
             
-            // Formatação para Moeda Brasileira (R$)
             const formatter = new Intl.NumberFormat('pt-BR', {
                 style: 'currency',
                 currency: 'BRL',
@@ -667,13 +729,10 @@
                 maximumFractionDigits: 2,
             });
 
-            // Atualiza o display com os valores
-            minReturnElement.innerText = formatter.format(minReturn);
-            maxReturnElement.innerText = formatter.format(maxReturn);
+            document.getElementById('min-return').innerText = formatter.format(minReturn);
+            document.getElementById('max-return').innerText = formatter.format(maxReturn);
 
-            // Mostra os resultados finais (incluindo o formulário de lead)
             resultsAreaDiv.classList.remove('hidden');
-
             // Rola para os resultados
             resultsAreaDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
